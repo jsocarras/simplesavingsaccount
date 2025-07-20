@@ -1,0 +1,39 @@
+{
+    storage int;
+    parameter
+        (or
+            (int %decrement)
+            (int %increment));
+    code
+        {
+            UNPAIR;
+            IF_LEFT
+                {
+                    DUP;
+                    GT;
+                    IF
+                        {
+                        }
+                        {
+                            PUSH string "Decrement amount must be positive";
+                            FAILWITH
+                        };
+                    SWAP;
+                    SUB
+                }
+                {
+                    DUP;
+                    GT;
+                    IF
+                        {
+                        }
+                        {
+                            PUSH string "Increment amount must be positive";
+                            FAILWITH
+                        };
+                    ADD
+                };
+            NIL operation;
+            PAIR
+        }
+}
